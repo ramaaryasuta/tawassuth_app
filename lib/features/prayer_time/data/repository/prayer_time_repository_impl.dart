@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import '../../../../core/api/api_client.dart';
+import '../../../../core/constants/env_keys.dart';
 import '../../../../core/models/failure.dart';
 import '../../../../core/models/typedef.dart';
 import '../../../../utils/print_log.dart';
@@ -19,6 +20,7 @@ class PrayerTimeRepositoryImpl implements PrayerTimeRepository {
     required double lat,
     required double long,
   }) async {
+    // example : 2026-03
     String yyyymmNow =
         '${DateTime.now().year}-${DateTime.now().month.toString().padLeft(2, '0')}';
 
@@ -26,7 +28,7 @@ class PrayerTimeRepositoryImpl implements PrayerTimeRepository {
       final response = await apiClient.request(
         method: MHttpMethod.get,
         path:
-            'https://islamicapi.com/api/v1/prayer-time/?lat=$lat&lon=$long.5835&date=$yyyymmNow&api_key=${dotenv.env['ISLAMIC_API_KEY']}',
+            'https://islamicapi.com/api/v1/prayer-time/?lat=$lat&lon=$long.5835&date=$yyyymmNow&api_key=${dotenv.env[MEnvKeys.ISLAMIC_API_KEY]}',
       );
 
       if (response.statusCode != 200) {
@@ -40,7 +42,7 @@ class PrayerTimeRepositoryImpl implements PrayerTimeRepository {
 
       return Right(PrayerTimeDataModel.fromJson(response.data));
     } catch (e, s) {
-      printLog('[getPrayerTime] error: $e, stack: $s');
+      printLog('[getPrayerTime] error: $e, stack: $s', type: LogType.error);
       return Left(Failure(error: e.toString(), message: s.toString()));
     }
   }
