@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
+bool showAPILog = false;
 void main() {
   runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
