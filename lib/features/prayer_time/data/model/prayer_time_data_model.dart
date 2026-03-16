@@ -39,11 +39,11 @@ class TimesModel extends Times {
 
   factory TimesModel.fromJson(Map<String, dynamic> json) {
     return TimesModel(
-      fajr: json['fajr'] ?? '',
-      dhuhr: json['dhuhr'] ?? '',
-      asr: json['asr'] ?? '',
-      maghrib: json['maghrib'] ?? '',
-      isha: json['isha'] ?? '',
+      fajr: json['Fajr'] ?? '',
+      dhuhr: json['Dhuhr'] ?? '',
+      asr: json['Asr'] ?? '',
+      maghrib: json['Maghrib'] ?? '',
+      isha: json['Isha'] ?? '',
     );
   }
 }
