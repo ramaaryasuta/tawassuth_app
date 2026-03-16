@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 
+import 'hijri_date.dart';
 import 'timezone.dart';
 
 class PrayerTimeData extends Equatable {
@@ -14,12 +15,17 @@ class PrayerTimeData extends Equatable {
 
 class PrayerTime extends Equatable {
   final String date;
+  final Hijri hijriDate;
   final Times times;
 
-  const PrayerTime({required this.date, required this.times});
+  const PrayerTime({
+    required this.date,
+    required this.times,
+    required this.hijriDate,
+  });
 
   @override
-  List<Object?> get props => [date, times];
+  List<Object?> get props => [date, times, hijriDate];
 }
 
 class Times extends Equatable {

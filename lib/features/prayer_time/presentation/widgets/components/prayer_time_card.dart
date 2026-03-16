@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../domain/entity/hijri_date.dart';
 import '../../../domain/entity/prayer_time.dart';
 
 class PrayerTimeCard extends StatefulWidget {
@@ -12,6 +13,8 @@ class PrayerTimeCard extends StatefulWidget {
 }
 
 class _PrayerTimeCardState extends State<PrayerTimeCard> {
+  Hijri _hijriDate = Hijri.empty();
+
   Times _prayTimeToday = const Times(
     fajr: '',
     dhuhr: '',
@@ -29,6 +32,7 @@ class _PrayerTimeCardState extends State<PrayerTimeCard> {
     );
 
     _prayTimeToday = today.times;
+    _hijriDate = today.hijriDate;
   }
 
   @override
@@ -39,14 +43,22 @@ class _PrayerTimeCardState extends State<PrayerTimeCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
+    return Column(
       children: [
-        _buildPrayerTime(title: 'Subuh', time: _prayTimeToday.fajr),
-        _buildPrayerTime(title: 'Dzuhur', time: _prayTimeToday.dhuhr),
-        _buildPrayerTime(title: 'Ashar', time: _prayTimeToday.asr),
-        _buildPrayerTime(title: 'Maghrib', time: _prayTimeToday.maghrib),
-        _buildPrayerTime(title: 'Isya', time: _prayTimeToday.isha),
+        Text(
+          '${_hijriDate.day} ${_hijriDate.month.en} ${_hijriDate.year}',
+          style: const TextStyle(color: Colors.white),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            _buildPrayerTime(title: 'Subuh', time: _prayTimeToday.fajr),
+            _buildPrayerTime(title: 'Dzuhur', time: _prayTimeToday.dhuhr),
+            _buildPrayerTime(title: 'Ashar', time: _prayTimeToday.asr),
+            _buildPrayerTime(title: 'Maghrib', time: _prayTimeToday.maghrib),
+            _buildPrayerTime(title: 'Isya', time: _prayTimeToday.isha),
+          ],
+        ),
       ],
     );
   }

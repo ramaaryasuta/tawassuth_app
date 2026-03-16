@@ -16,7 +16,10 @@ class _HeroPrayerTimeState extends State<HeroPrayerTime> {
   @override
   void initState() {
     super.initState();
-    context.read<PrayerTimeCubit>().getPrayerTime(1.6034, 103.5835);
+    context.read<PrayerTimeCubit>().getPrayerTime(
+      -1.611752,
+      103.56809234000005,
+    );
   }
 
   @override
@@ -36,7 +39,7 @@ class _HeroPrayerTimeState extends State<HeroPrayerTime> {
 
             return Column(
               children: [
-                Expanded(child: Container()),
+                Expanded(child: Text('asdf')),
                 PrayerTimeCard(prayerTimeData: data),
               ],
             );
